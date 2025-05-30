@@ -11,6 +11,7 @@
   <packaging>pom</packaging>
   <description>Accounting project</description>
   <modules>
+    <module>drools-lesson4</module>
     <module>drools-lesson1</module>
     <module>drools-lesson2</module>
     <module>drools-lesson31</module>
@@ -18,7 +19,7 @@
     <module>drools-lesson33</module>
     <module>drools-lesson34</module>
     <module>drools-lesson35</module>
-    <module>drools-lesson4</module>
+
     <module>drools-lesson-pojo</module>
   </modules>
   <build>
