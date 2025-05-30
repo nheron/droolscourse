@@ -19,18 +19,14 @@ rule "Credit and Debit Rule"
 	when
 		$c : Account( $acc : accountno )
 		$p : AccountingPeriod ($sDate : startDate ,$eDate : endDate )
+
         $totalCredit : Number( doubleValue > 100 )
              from accumulate( CashFlow( type ==CashFlow.CREDIT,$value : amount, mvtDate >= $sDate && mvtDate  <= $eDate,accountNo == $acc ),
-                              init( double total = 0; ),
-                              action( total += $value; ),
-                              reverse( total -= $value; ),
-                              result( total ) )
+                             sum($value))
+
         $totalDebit : Number( doubleValue > 100 )
              from accumulate( CashFlow( type ==CashFlow.DEBIT,$value : amount, mvtDate >= $sDate && mvtDate  <= $eDate,accountNo == $acc ),
-                              init( double total = 0; ),
-                              action( total += $value; ),
-                              reverse( total -= $value; ),
-                              result( total ) )
+                            sum($value) )
 
 	then
 		showResult.showText(" Found "+$totalCredit+" as a credit");

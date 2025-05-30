@@ -15,14 +15,19 @@
 		<dependency>
 			<groupId>org.kiegroup</groupId>
 			<artifactId>cost-calculation-extension</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.drools</groupId>
-			<artifactId>drools-compiler</artifactId>
+			<artifactId>drools-engine-classic</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.eclipse.jdt.core.compiler</groupId>
-			<artifactId>ecj</artifactId>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-model-compiler</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.drools</groupId>
+			<artifactId>drools-ecj</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.kie.kogito</groupId>
@@ -48,11 +53,7 @@
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
-				<version>3.6.0</version>
-				<configuration>
-					<source>1.8</source>
-					<target>1.8</target>
-				</configuration>
+				<version>${maven.compiler.version}</version>
 			</plugin>
 		</plugins>
 	</build>

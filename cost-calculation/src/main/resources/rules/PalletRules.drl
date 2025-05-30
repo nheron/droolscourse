@@ -121,10 +121,10 @@ end
 
 rule "GetSmallestHeight"
 	ruleflow-group "distribution"
-    when   
-    	accumulate( Product( $h : height ,transportType==Product.transportType_pallet );
-                $min : min( $h );
-                true )
+    when
+    $min  : Number( )
+        from accumulate( Product( $h : height ,transportType==Product.transportType_pallet);
+               min( $h ))
                
     then
     	CalculatedElement elt = new CalculatedElement();

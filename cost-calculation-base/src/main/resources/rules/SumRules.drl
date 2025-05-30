@@ -22,45 +22,27 @@ ruleflow-group "total"
 	$totalBoatTransport : Number( doubleValue > 100 )
              from accumulate( $s : Step(transportType ==Step.Ship_TransportType) &&
                               TransportCostElement(step ==$s, $value : amount  ),
-                              init( double total = 0; ),
-                              action( total += $value; ),
-                              reverse( total -= $value; ),
-                              result( total ) )
+                               sum($value))
 	$totalTrainTransport : Number( doubleValue > 100 )
             from accumulate( $s : Step(transportType ==Step.train_TransportType) &&
                             TransportCostElement(step ==$s, $value : amount  ),
-                             init( double total = 0; ),
-                             action( total += $value; ),
-                             reverse( total -= $value; ),
-                             result( total ) )
+                             sum($value) )
 	$totalTruckTransport : Number( doubleValue > 100 )
            from accumulate( $s : Step(transportType ==Step.truck_TransportType) &&
                             TransportCostElement(step ==$s, $value : amount  ),
-                            init( double total = 0; ),
-                            action( total += $value; ),
-                            reverse( total -= $value; ),
-                            result( total ) )
+                             sum($value) )
 	
 	
 	
 	$totalTransport : Number( doubleValue > 100 )
              from accumulate(  TransportCostElement( $value : amount  ),
-                              init( double total = 0; ),
-                              action( total += $value; ),
-                              reverse( total -= $value; ),
-                              result( total ) )
+                               sum($value) )
     $totalTaxes : Number( doubleValue > 100 )
              from accumulate(  TaxesCostElement( $value : amount  ),
-                              init( double total = 0; ),
-                              action( total += $value; ),
-                              reverse( total -= $value; ),
-                              result( total ) )
+                              sum($value))
      $totalHandling : Number( doubleValue > 100 )
              from accumulate(  HandlingCostElement( $value : amount  ),
-                              init( double total = 0; ),
-                              action( total += $value; ),
-                              reverse( total -= $value; ),
-                              result( total ) )
+                              sum($value) )
 	then
 		System.out.println("NumberOfPallets="+$c.getPallets().size());
 		System.out.println("TotalShipTransport="+$totalBoatTransport);

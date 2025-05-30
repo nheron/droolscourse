@@ -37,5 +37,5 @@ rule "Numbers of  CashFlow Line"
               from collect( CashFlow( mvtDate >= $sDate && mvtDate  <= $eDate,accountNo == $acc ) )
 
 	then
-		showResult.showText("Found "+$number+" more than 2 CashFlow Lines");
+		showResult.showText("Found "+$number+" CashFlow Lines");
 end

@@ -8,6 +8,7 @@ import org.junit.Test;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.StatelessKieSession;
+import org.kie.api.runtime.process.ProcessInstance;
 import util.KnowledgeSessionHelper;
 
 @SuppressWarnings("restriction")
@@ -83,13 +84,13 @@ public class TestExecercice {
         long before = System.currentTimeMillis();
 
         this.insertIntoSession(sessionStatefull, request);
-        sessionStatefull.startProcess("P1");
-        int i = sessionStatefull.fireAllRules();
+        ProcessInstance processInstance = sessionStatefull.startProcess("P1");
+
         long after = System.currentTimeMillis();
-        System.out.println("NumberRules Executed " + i);
+    //    System.out.println("NumberRules Executed " + i);
         System.out.println("Rules executed in " + (after - before) + " ms");
-        Double dd = new Double(i) / (after - before) * 1000;
-        System.out.println("NbreRules/seconde=" + dd);
+     //   Double dd = new Double(i) / (after - before) * 1000;
+     //   System.out.println("NbreRules/seconde=" + dd);
 
     }
 

@@ -12,11 +12,7 @@ import droolscours.util.OutputDisplay;
 
 global OutputDisplay showResult;
 
-rule "start process"
-	when
-	then
-		kcontext.getKieRuntime().startProcess("RF3");
-end
+
 
 rule "Account group1 4a"
 	ruleflow-group "Group1"
