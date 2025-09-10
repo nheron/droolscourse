@@ -3,8 +3,6 @@ package lesson4
 
 //#list any import classes here.
 import droolscours.Account;
-import droolscours.AccountingPeriod;
-import droolscours.CashFlow;
 import droolscours.util.OutputDisplay;
 
 //#declare any global variables here

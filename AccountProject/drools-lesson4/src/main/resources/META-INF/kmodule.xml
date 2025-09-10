@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
 
-    <kbase name="lesson4" packages="lesson4">
+    <kbase name="lesson4" packages="lesson4" includes="lessonpojo">
         <ksession name="lesson4-session"/>
     </kbase>
-    <kbase name="lesson4a" packages="lesson4a">
+    <kbase name="lesson4a" packages="lesson4a" includes="lessonpojo">
         <ksession name="lesson4a-session"/>
     </kbase>
 </kmodule>

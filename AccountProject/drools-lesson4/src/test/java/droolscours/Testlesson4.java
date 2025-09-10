@@ -40,18 +40,9 @@ public class Testlesson4 {
 		Account a = new Account();
 		sessionStatefull.insert(a);
 		sessionStatefull.startProcess("RF1");
-		sessionStatefull.fireAllRules();
+
 	}
-	@Test
-	public void testRuleFlow2() {
-		sessionStatefull = KnowledgeSessionHelper
-				.getStatefulKnowledgeSessionForJBPM(kieContainer, "lesson4-session");
-		OutputDisplay display = new OutputDisplay();
-		sessionStatefull.setGlobal("showResult", display);
-		Account a = new Account();
-		sessionStatefull.insert(a);
-		sessionStatefull.fireAllRules();
-	}
+
 	@Test
 	public void testRuleFlow3() {
 		sessionStatefull = KnowledgeSessionHelper
@@ -64,8 +55,22 @@ public class Testlesson4 {
 		AccountingPeriod period = new AccountingPeriod();
 		sessionStatefull.insert(period);
 
-		sessionStatefull.fireAllRules();
+		sessionStatefull.startProcess("RF3");
 
 	}
+@Test
+	public void testRuleFlow3More11000() {
+		sessionStatefull = KnowledgeSessionHelper
+				.getStatefulKnowledgeSessionForJBPM(kieContainer, "lesson4a-session");
+		OutputDisplay display = new OutputDisplay();
+		sessionStatefull.setGlobal("showResult", display);
+		Account a = new Account();
+		a.setBalance(1500);
+		sessionStatefull.insert(a);
+		AccountingPeriod period = new AccountingPeriod();
+		sessionStatefull.insert(period);
 
+		sessionStatefull.startProcess("RF3");
+
+	}
 }

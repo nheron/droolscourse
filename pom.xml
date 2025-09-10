@@ -22,7 +22,8 @@
         <cxf.version>2.2.6</cxf.version>
         <spring-version>3.0.1.RELEASE</spring-version>
         <commons-logging-version>1.1.1</commons-logging-version>
-        <drools.version>10.0.0</drools.version>
+        <drools.version>10.1.0-aletyx-rc.2</drools.version>
+        <maven.compiler.version>3.14.0</maven.compiler.version>
     </properties>
 
 
@@ -32,11 +33,7 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.5.1</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <release>17</release>
-                </configuration>
+
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -57,42 +54,25 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>org.kiegroup</groupId>
-                <artifactId>cost-calculation-base</artifactId>
-                <version>${project.version}</version>
+                <groupId>org.drools</groupId>
+                <artifactId>drools-bom</artifactId>
+                <version>${drools.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
-            <dependency>
-                <groupId>org.kiegroup</groupId>
-                <artifactId>cost-calculation-extension</artifactId>
-                <version>${project.version}</version>
-            </dependency>
+
             <dependency>
                 <groupId>joda-time</groupId>
                 <artifactId>joda-time</artifactId>
                 <version>2.2</version>
             </dependency>
             <dependency>
-                <groupId>org.drools</groupId>
-                <artifactId>drools-compiler</artifactId>
-                <version>${drools.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>org.eclipse.jdt.core.compiler</groupId>
-                <artifactId>ecj</artifactId>
-                <version>4.4.2</version>
-            </dependency>
-            <dependency>
                 <groupId>org.kie.kogito</groupId>
                 <artifactId>jbpm-bpmn2</artifactId>
                 <version>${drools.version}</version>
             </dependency>
-            <dependency>
-                <groupId>org.kie</groupId>
-                <artifactId>kie-api</artifactId>
-                <version>${drools.version}</version>
-            </dependency>
 
-   
+
             <!-- Logging -->
             <dependency>
                 <groupId>commons-logging</groupId>
@@ -108,7 +88,7 @@
                 <scope>test</scope>
             </dependency>
 
-           
+
         </dependencies>
 
     </dependencyManagement>
