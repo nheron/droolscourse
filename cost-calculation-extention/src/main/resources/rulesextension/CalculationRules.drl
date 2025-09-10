@@ -1,5 +1,5 @@
 
-package rules-extension
+package rules
 
 import cost.OrderLine;
 import cost.LeftToDistribute;

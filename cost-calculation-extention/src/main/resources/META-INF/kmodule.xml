@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
-    <kbase name="kbase-extension"  packages="rulesextension" includes="kbase-base">
+    <kbase name="kbase-extension" includes="kbase-base" packages="rulesextension" >
         <ksession name="session-extension"/>
     </kbase>
 </kmodule>

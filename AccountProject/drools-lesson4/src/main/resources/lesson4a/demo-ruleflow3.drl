@@ -6,28 +6,41 @@ import droolscours.Account;
 import droolscours.AccountingPeriod;
 import droolscours.CashFlow;
 import droolscours.util.OutputDisplay;
-
 //#declare any global variables here
 
 
-global OutputDisplay showResult;
+global droolscours.util.OutputDisplay showResults;
 
-
+rule "start ruleflow group1"
+    salience -500
+	when
+	    Account(balance >= 1000)
+	then
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("Group1").setFocus();
+end
 
 rule "Account group1 4a"
 	ruleflow-group "Group1"
 	when
 		Account(balance > 0  )
 	then 
-		showResult.showText("Account in Group1 > 1000 ");
+		showResults.showText("Account in Group1 > 1000 ");
 		
 end
+rule "start ruleflow group2"
+    salience -500
+	when
+	    Account(balance < 1000)
+	then
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("Group2").setFocus();
+end
+
 rule "Account group2 4a"
 	ruleflow-group "Group2"
 	when
 		Account(  )
 	then 
-		showResult.showText("Account in Group2 < 1000");
+		showResults.showText("Account in Group2 < 1000");
 		
 end
 

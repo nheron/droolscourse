@@ -36,10 +36,11 @@ public class Testlesson4 {
 		sessionStatefull = KnowledgeSessionHelper
 				.getStatefulKnowledgeSessionForJBPM(kieContainer, "lesson4-session");
 		OutputDisplay display = new OutputDisplay();
-		sessionStatefull.setGlobal("showResult", display);
+		sessionStatefull.setGlobal("showResults", display);
 		Account a = new Account();
 		sessionStatefull.insert(a);
-		sessionStatefull.startProcess("RF1");
+
+		sessionStatefull.fireAllRules();
 
 	}
 
@@ -48,29 +49,29 @@ public class Testlesson4 {
 		sessionStatefull = KnowledgeSessionHelper
 				.getStatefulKnowledgeSessionForJBPM(kieContainer, "lesson4a-session");
 		OutputDisplay display = new OutputDisplay();
-		sessionStatefull.setGlobal("showResult", display);
+		sessionStatefull.setGlobal("showResults", display);
 		Account a = new Account();
 		a.setBalance(500);
 		sessionStatefull.insert(a);
 		AccountingPeriod period = new AccountingPeriod();
 		sessionStatefull.insert(period);
 
-		sessionStatefull.startProcess("RF3");
+		sessionStatefull.fireAllRules();
 
 	}
-@Test
+	@Test
 	public void testRuleFlow3More11000() {
 		sessionStatefull = KnowledgeSessionHelper
 				.getStatefulKnowledgeSessionForJBPM(kieContainer, "lesson4a-session");
 		OutputDisplay display = new OutputDisplay();
-		sessionStatefull.setGlobal("showResult", display);
+		sessionStatefull.setGlobal("showResults", display);
 		Account a = new Account();
 		a.setBalance(1500);
 		sessionStatefull.insert(a);
 		AccountingPeriod period = new AccountingPeriod();
 		sessionStatefull.insert(period);
 
-		sessionStatefull.startProcess("RF3");
+		sessionStatefull.fireAllRules();
 
 	}
 }

@@ -83,7 +83,6 @@ public class TestExecercice {
         long before = System.currentTimeMillis();
 
         this.insertIntoSession(sessionStatefull, request);
-        sessionStatefull.startProcess("P1");
         int i = sessionStatefull.fireAllRules();
         long after = System.currentTimeMillis();
         System.out.println("NumberRules Executed " + i);

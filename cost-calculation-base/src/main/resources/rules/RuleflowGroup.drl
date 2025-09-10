@@ -1,0 +1,23 @@
+
+package rules
+
+rule "start ruleflow distribution"
+    salience -500
+	when
+	then
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("distribution").setFocus();
+end
+rule "start ruleflow calculation"
+    salience -500
+    ruleflow-group "distribution"
+	when
+	then
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("calculation").setFocus();
+end
+rule "start ruleflow total"
+    salience -500
+    ruleflow-group "calculation"
+	when
+	then
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("total").setFocus();
+end

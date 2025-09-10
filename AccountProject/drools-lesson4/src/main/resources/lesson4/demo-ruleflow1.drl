@@ -3,28 +3,44 @@ package lesson4
 
 //#list any import classes here.
 import droolscours.Account;
-import droolscours.util.OutputDisplay;
+import java.util.List;
 
 //#declare any global variables here
 
 
-global OutputDisplay showResult;
+global droolscours.util.OutputDisplay showResults;
 
+rule "start ruleflow group1"
+    salience -500
+	when
+	then
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("Group1").setFocus();
+end
 
 rule "Account group1 4"
+    salience -500
 	ruleflow-group "Group1"
 	when
 		Account(  )
 	then 
-		showResult.showText("Account in Group1");
+		showResults.showText("Account in Group1");
 		
 end
+
+rule "start ruleflow group2"
+	ruleflow-group "Group1"
+	when
+
+	then
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("Group2").setFocus();
+end
+
 rule "Account group2 4"
 	ruleflow-group "Group2"
 	when
 		Account(  )
 	then 
-		showResult.showText("Account in Group2");
+		showResults.showText("Account in Group2");
 		
 end
 
