@@ -12,11 +12,11 @@ rule "start ruleflow calculation"
     ruleflow-group "distribution"
 	when
 	then
-		kcontext.getKieRuntime().getAgenda().getAgendaGroup("calculation").setFocus();
+		kcontext.getKieRuntime().getAgenda().getAgendaGroup("calculate").setFocus();
 end
 rule "start ruleflow total"
     salience -500
-    ruleflow-group "calculation"
+    ruleflow-group "calculate"
 	when
 	then
 		kcontext.getKieRuntime().getAgenda().getAgendaGroup("total").setFocus();
