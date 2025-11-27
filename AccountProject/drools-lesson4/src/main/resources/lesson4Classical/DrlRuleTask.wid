@@ -1,0 +1,19 @@
+[
+    [
+        "name" : "DrlRuleTask",
+        "displayName" : "DRL Task",
+        "ruleFlowGroup" : "ruleFlowGroup",
+        "icon" : "data:image/png;base64,cnVsZXM=",
+        "category" : "DroolsV7",
+        "documentation" : "drl ruleflow group.",
+
+        "parameters" : [
+         
+        ],
+
+        "results" : [
+         
+        ]
+    ]
+]
+

@@ -1,12 +1,20 @@
 package util;
 
-import org.jbpm.workflow.instance.node.RuleSetNodeInstance;
+import org.drools.core.impl.EnvironmentFactory;
+import org.drools.core.impl.RuleBaseFactory;
+import org.drools.kiesession.rulebase.InternalKnowledgeBase;
+import org.kie.api.KieBase;
 import org.kie.api.KieServices;
 import org.kie.api.event.process.*;
 import org.kie.api.event.rule.*;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
+import org.kie.api.runtime.KieSessionConfiguration;
 import org.kie.api.runtime.StatelessKieSession;
+import org.kie.internal.utils.ChainedProperties;
+
+import java.util.Properties;
+
 public class KnowledgeSessionHelper {
 
     public static KieContainer createRuleBase() {
@@ -32,146 +40,34 @@ public class KnowledgeSessionHelper {
     public static KieSession getStatefulKnowledgeSessionWithCallback(
             KieContainer kieContainer, String sessionName) {
         KieSession session = getStatefulKnowledgeSession(kieContainer, sessionName);
-        session.addEventListener(new RuleRuntimeEventListener() {
-            public void objectInserted(ObjectInsertedEvent event) {
-                System.out.println("Object inserted \n"
-                        + event.getObject().toString());
-            }
-
-            public void objectUpdated(ObjectUpdatedEvent event) {
-                System.out.println("Object was updated \n"
-                        + "new Content \n" + event.getObject().toString());
-            }
-
-            public void objectDeleted(ObjectDeletedEvent event) {
-                System.out.println("Object retracted \n"
-                        + event.getOldObject().toString());
-            }
-        });
-
-        session.addEventListener(new AgendaEventListener() {
-            public void matchCreated(MatchCreatedEvent event) {
-                System.out.println("The rule "
-                        + event.getMatch().getRule().getName()
-                        + " can be fired in agenda");
-            }
-
-            public void matchCancelled(MatchCancelledEvent event) {
-                System.out.println("The rule "
-                        + event.getMatch().getRule().getName()
-                        + " cannot b in agenda");
-            }
-
-            public void beforeMatchFired(BeforeMatchFiredEvent event) {
-                System.out.println("The rule "
-                        + event.getMatch().getRule().getName()
-                        + " will be fired");
-            }
-
-            public void afterMatchFired(AfterMatchFiredEvent event) {
-                System.out.println("The rule "
-                        + event.getMatch().getRule().getName()
-                        + " has be fired");
-            }
-
-            public void agendaGroupPopped(AgendaGroupPoppedEvent event) {
-
-            }
-
-            public void agendaGroupPushed(AgendaGroupPushedEvent event) {
-
-            }
-
-            public void beforeRuleFlowGroupActivated(RuleFlowGroupActivatedEvent event) {
-
-            }
-
-            public void afterRuleFlowGroupActivated(RuleFlowGroupActivatedEvent event) {
-
-            }
-
-            public void beforeRuleFlowGroupDeactivated(RuleFlowGroupDeactivatedEvent event) {
-
-            }
-
-            public void afterRuleFlowGroupDeactivated(RuleFlowGroupDeactivatedEvent event) {
-
-            }
-        });
+        session.addEventListener(new ChtiJbugSimpleRuleRuntimeEventListener());
+        session.addEventListener(new ChtiJbugSimpleAgendaEventListener() );
 
 
         return session;
     }
 
+
+    public static KieSession getKogitoProcessSession( KieContainer kieContainer, String kbaseName){
+
+        KieBase kieBase = kieContainer.getKieBase(kbaseName);
+        Properties props = new Properties();
+        props.setProperty("drools.workItemHandlers", "DRLTaskWorkItemHandlers.conf");
+       // props.setProperty("drools.workItemManagerFactory", "org.jbpm.process.workitem.builtin.DefaultKogitoWorkItemHandlerFactory");
+        ClassLoader cl = ((InternalKnowledgeBase)kieBase).getConfiguration().getClassLoader();
+        KieSessionConfiguration config = RuleBaseFactory.newKnowledgeSessionConfiguration(ChainedProperties.getChainedProperties(cl).addProperties(props), cl);
+        KieSession ksession = kieBase.newKieSession(config, EnvironmentFactory.newEnvironment());
+        ksession.addEventListener(new ChtiJbugSimpleRuleRuntimeEventListener());
+        ksession.addEventListener(new ChtiJbugSimpleAgendaEventListener() );
+        ksession.addEventListener(new ChtiJbugSimpleProcessEventListener() );
+        return ksession;
+    }
+
     public static KieSession getStatefulKnowledgeSessionForJBPM(
             KieContainer kieContainer, String sessionName) {
         KieSession session = getStatefulKnowledgeSessionWithCallback(kieContainer, sessionName);
-        //Kie
 
-        session.addEventListener(new ProcessEventListener() {
-
-            @Override
-            public void beforeVariableChanged(ProcessVariableChangedEvent arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void beforeProcessStarted(ProcessStartedEvent arg0) {
-                System.out.println("Process Name " + arg0.getProcessInstance().getProcessName() + " has been started");
-
-
-            }
-
-            @Override
-            public void beforeProcessCompleted(ProcessCompletedEvent arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void beforeNodeTriggered(ProcessNodeTriggeredEvent arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void beforeNodeLeft(ProcessNodeLeftEvent arg0) {
-                if (arg0.getNodeInstance() instanceof RuleSetNodeInstance) {
-                    System.out.println("Node Name " + arg0.getNodeInstance().getNodeName() + " has been left");
-                }
-
-            }
-
-            @Override
-            public void afterVariableChanged(ProcessVariableChangedEvent arg0) {
-                // TODO Auto-generated method stub
-
-            }
-
-            @Override
-            public void afterProcessStarted(ProcessStartedEvent arg0) {
-
-            }
-
-            @Override
-            public void afterProcessCompleted(ProcessCompletedEvent arg0) {
-                System.out.println("Process Name " + arg0.getProcessInstance().getProcessName() + " has stopped");
-
-
-            }
-
-            @Override
-            public void afterNodeTriggered(ProcessNodeTriggeredEvent arg0) {
-                if (arg0.getNodeInstance() instanceof RuleSetNodeInstance) {
-                    System.out.println("Node Name " + arg0.getNodeInstance().getNodeName() + " has been entered");
-                }
-            }
-
-            @Override
-            public void afterNodeLeft(ProcessNodeLeftEvent arg0) {
-            }
-        });
+        session.addEventListener(new ChtiJbugSimpleProcessEventListener() );
         return session;
     }
 

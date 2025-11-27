@@ -7,4 +7,7 @@
     <kbase name="lesson4a" packages="lesson4a" includes="lessonpojo">
         <ksession name="lesson4a-session"/>
     </kbase>
+    <kbase name="lesson4aClassical" packages="lesson4aClassical" includes="lessonpojo">
+        <ksession name="lesson4aClassical-session"/>
+    </kbase>
 </kmodule>
