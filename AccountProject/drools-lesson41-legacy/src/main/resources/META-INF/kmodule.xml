@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://www.drools.org/xsd/kmodule">
+
+
+    <kbase name="lesson4aClassical" packages="lesson4aClassical" includes="lessonpojo">
+        <ksession name="lesson4aClassical-session">
+            <workItemHandlers>
+                <!--workItemHandler type="lesson4Classical.CustomTaskWorkItemHandler" name="DrlRuleTask"/-->
+            </workItemHandlers>
+        </ksession>
+    </kbase>
+</kmodule>

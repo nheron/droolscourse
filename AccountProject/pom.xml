@@ -11,7 +11,9 @@
   <packaging>pom</packaging>
   <description>Accounting project</description>
   <modules>
-    <module>drools-lesson4</module>
+    <module>drools-lesson40</module>
+    <module>drools-lesson41-legacy</module>
+
     <module>drools-lesson1</module>
     <module>drools-lesson2</module>
     <module>drools-lesson31</module>

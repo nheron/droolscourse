@@ -52,11 +52,13 @@ public class KnowledgeSessionHelper {
 
         KieBase kieBase = kieContainer.getKieBase(kbaseName);
         Properties props = new Properties();
-        props.setProperty("drools.workItemHandlers", "DRLTaskWorkItemHandlers.conf");
+       // props.setProperty("drools.workItemHandlers", "CustomTaskWorkItemHandlers.conf");
+        props.setProperty("drools.workItemHandlers", "DrlCustomTaskWorkItemHandlers.conf");
        // props.setProperty("drools.workItemManagerFactory", "org.jbpm.process.workitem.builtin.DefaultKogitoWorkItemHandlerFactory");
         ClassLoader cl = ((InternalKnowledgeBase)kieBase).getConfiguration().getClassLoader();
         KieSessionConfiguration config = RuleBaseFactory.newKnowledgeSessionConfiguration(ChainedProperties.getChainedProperties(cl).addProperties(props), cl);
         KieSession ksession = kieBase.newKieSession(config, EnvironmentFactory.newEnvironment());
+
         ksession.addEventListener(new ChtiJbugSimpleRuleRuntimeEventListener());
         ksession.addEventListener(new ChtiJbugSimpleAgendaEventListener() );
         ksession.addEventListener(new ChtiJbugSimpleProcessEventListener() );

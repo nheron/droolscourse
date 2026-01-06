@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="_VIiN4KzJED6uSuvuA_BJbQ" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
-  <bpmn2:collaboration id="_7680E4CE-5AC5-4C44-B437-3F780F0C62A0" name="Default Collaboration">
-    <bpmn2:participant id="_CE017FDE-A4B2-49E0-953C-6641C3E2075C" name="Pool Participant" processRef="processLesson4Classical"/>
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" id="__BU5YM05ED62bNxkMtdX4Q" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd http://www.omg.org/spec/DD/20100524/DC DC.xsd http://www.omg.org/spec/DD/20100524/DI DI.xsd " exporter="jBPM Process Modeler" exporterVersion="2.0" targetNamespace="http://www.omg.org/bpmn20">
+  <bpmn2:collaboration id="_182A6274-7BAA-473F-BFA5-00F087B94775" name="Default Collaboration">
+    <bpmn2:participant id="_C715FCE7-5327-4780-967E-E1E7D16E5263" name="Pool Participant" processRef="processLesson4Classical"/>
   </bpmn2:collaboration>
   <bpmn2:process id="processLesson4Classical" drools:packageName="lesson4Classical" drools:version="1.0" drools:adHoc="false" name="processLesson4Classical" isExecutable="true" processType="Public">
+    <bpmn2:extensionElements>
+      <drools:metaData name="jbpm.transactions.enable">
+        <drools:metaValue><![CDATA[true]]></drools:metaValue>
+      </drools:metaData>
+    </bpmn2:extensionElements>
     <bpmn2:sequenceFlow id="_3D22869D-DAF4-4195-B963-54575AB461D7" sourceRef="_0764217A-6C43-48EE-885D-984F169419FD" targetRef="_E6DDEFBD-BD76-41A3-85AE-EBCF2EA1C8AF">
       <bpmn2:extensionElements>
         <drools:metaData name="isAutoConnection.target">
@@ -104,7 +109,7 @@
         </bpsim:Scenario>
       </bpsim:BPSimData>
     </bpmn2:extensionElements>
-    <bpmn2:source>_VIiN4KzJED6uSuvuA_BJbQ</bpmn2:source>
-    <bpmn2:target>_VIiN4KzJED6uSuvuA_BJbQ</bpmn2:target>
+    <bpmn2:source>__BU5YM05ED62bNxkMtdX4Q</bpmn2:source>
+    <bpmn2:target>__BU5YM05ED62bNxkMtdX4Q</bpmn2:target>
   </bpmn2:relationship>
 </bpmn2:definitions>

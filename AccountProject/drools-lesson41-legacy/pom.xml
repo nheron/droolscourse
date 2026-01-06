@@ -10,9 +10,28 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<packaging>kjar</packaging>
-	<artifactId>drools-lesson4</artifactId>
+	<artifactId>drools-lesson41-legacy</artifactId>
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>org.kie.kogito</groupId>
+				<artifactId>kogito-bom</artifactId>
+				<version>${drools.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
+		</dependencies>
+	</dependencyManagement>
 	<dependencies>
+		<dependency>
+			<groupId>org.kie.kogito</groupId>
+			<artifactId>kogito-api</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.kie.kogito</groupId>
+			<artifactId>process-workitems</artifactId>
+		</dependency>
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-compiler</artifactId>
