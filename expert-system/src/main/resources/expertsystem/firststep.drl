@@ -1,0 +1,11 @@
+package expertsystem;
+import es.Request;
+import es.ScreenStep;
+
+rule "Initiate First Screen Recherche"
+when
+    $request : Request($id : id)
+    not ScreenStep(requestId==$id)
+then
+    insert($request.addScreenStep("01","Recherche context"));
+end

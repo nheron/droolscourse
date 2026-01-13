@@ -15,6 +15,7 @@
         <module>cost-calculation-base</module>
         <module>cost-calculation-extention</module>
         <module>cost-calculation-run</module>
+        <module>expert-system</module>
     </modules>
     <properties>
 
