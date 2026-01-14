@@ -1,7 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
-    <kbase name="rules" packages="expertsystem">
+    <kbase name="rules" packages="decisiontable">
+        <ruleTemplate dtable="decisiontable/Questions.xls"
+                      template="decisiontable/BaseQuestions.drt"
+                      row="3" col="3"/>
+
         <ksession name="ksession-rules"/>
     </kbase>
+    <!--kbase name="DTableWithTemplateKB" packages="org.drools.examples.decisiontable-template">
 
+        <ruleTemplate dtable="decisiontable-template/Questions.xls"
+                      template="decisiontable-template/BaseQuestions.drt"
+                      row="3" col="3"/>
+
+        <ksession name="ksession-rules"/>
+    </kbase-->
 </kmodule>

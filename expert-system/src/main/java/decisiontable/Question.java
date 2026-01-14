@@ -1,4 +1,4 @@
-package es;
+package decisiontable;
 
 public class Question {
     private String screenId;

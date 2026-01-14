@@ -1,4 +1,4 @@
-package es;
+package decisiontable;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,7 +16,7 @@ public class ScreenStep {
     private String screenId;
     private String title;
     private String orderNumber;
-    private Map<String,Question> questions= new HashMap<String,Question>();
+    private Map<String, Question> questions= new HashMap<String, Question>();
     public ScreenStep(String requestId, String screenId, String title) {
         this.requestId = requestId;
         this.screenId = screenId;

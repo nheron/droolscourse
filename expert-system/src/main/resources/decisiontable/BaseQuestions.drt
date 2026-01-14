@@ -1,0 +1,25 @@
+template header
+screenIdentifier
+questionIdentifier
+questionText
+questionVariable
+
+package decisiontable;
+
+template "questions"
+screenIdentifier
+questionIdentifier
+questionText
+questionVariable
+
+rule "questions_@{row.rowNumber}"
+
+    when
+        $request : Request($id : id )
+        $screenStep : ScreenStep(requestId==$id,$screenId : screenId == "@{screenIdentifier}")
+        not Question(screenId==$screenId,questionId=="@{questionIdentifier}")
+    then
+        System.out.println("coucou");
+       insert ($screenStep.addQuestion("@{questionIdentifier}","@{questionText}","@{questionVariable}"));
+end
+end template

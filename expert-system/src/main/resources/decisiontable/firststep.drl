@@ -1,0 +1,11 @@
+package decisiontable;
+import decisiontable.Request;
+import decisiontable.ScreenStep;
+
+rule "Initiate First Screen Recherche"
+when
+    $request : Request($id : id)
+    not ScreenStep(requestId==$id)
+then
+    insert($request.addScreenStep("S-01","Recherche context"));
+end

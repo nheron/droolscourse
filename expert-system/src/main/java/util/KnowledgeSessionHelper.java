@@ -1,12 +1,18 @@
 package util;
 
+import org.drools.decisiontable.DecisionTableProviderImpl;
 import org.jbpm.workflow.instance.node.RuleSetNodeInstance;
 import org.kie.api.KieServices;
 import org.kie.api.event.process.*;
 import org.kie.api.event.rule.*;
+import org.kie.api.io.Resource;
 import org.kie.api.runtime.KieContainer;
 import org.kie.api.runtime.KieSession;
 import org.kie.api.runtime.StatelessKieSession;
+import org.kie.internal.builder.DecisionTableConfiguration;
+import org.kie.internal.builder.DecisionTableInputType;
+import org.kie.internal.builder.KnowledgeBuilderFactory;
+import org.kie.internal.io.ResourceFactory;
 
 public class KnowledgeSessionHelper {
     public static KieContainer createRuleBase() {
@@ -16,8 +22,8 @@ public class KnowledgeSessionHelper {
         return kieContainer;
     }
 
-    public static StatelessKieSession getStatelessKnowledgeSession(KieContainer kieContainer, String sessionName) {
-         StatelessKieSession kSession = kieContainer.newStatelessKieSession(sessionName);
+    public static KieSession getStatelessKnowledgeSession(KieContainer kieContainer, String sessionName) {
+        KieSession kSession = kieContainer.newKieSession(sessionName);
 
         return kSession;
     }
@@ -171,5 +177,17 @@ public class KnowledgeSessionHelper {
 
 
         return session;
+    }
+    public static String getDrlFromExcel(String excelFile) {
+        DecisionTableConfiguration configuration = KnowledgeBuilderFactory.newDecisionTableConfiguration();
+        configuration.setInputType(DecisionTableInputType.XLS);
+
+        Resource dt = ResourceFactory.newClassPathResource(excelFile, KnowledgeSessionHelper.class);
+
+        DecisionTableProviderImpl decisionTableProvider = new DecisionTableProviderImpl();
+
+        String drl = decisionTableProvider.loadFromResource(dt, null);
+
+        return drl;
     }
 }
