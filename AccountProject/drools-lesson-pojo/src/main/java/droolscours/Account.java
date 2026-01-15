@@ -1,6 +1,8 @@
 package droolscours;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
     private long accountno;
     private double balance;
 

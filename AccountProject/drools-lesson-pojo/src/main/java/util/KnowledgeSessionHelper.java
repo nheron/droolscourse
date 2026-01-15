@@ -1,5 +1,6 @@
 package util;
 
+import org.drools.core.process.instance.WorkItemHandler;
 import org.jbpm.workflow.instance.node.RuleSetNodeInstance;
 import org.kie.api.KieServices;
 import org.kie.api.event.process.*;
@@ -103,6 +104,7 @@ public class KnowledgeSessionHelper {
         return session;
     }
 
+
     public static KieSession getStatefulKnowledgeSessionForJBPM(
             KieContainer kieContainer, String sessionName) {
         KieSession session = getStatefulKnowledgeSessionWithCallback(kieContainer, sessionName);
@@ -174,6 +176,76 @@ public class KnowledgeSessionHelper {
         });
         return session;
     }
+    public static KieSession getStatefulKnowledgeSessionForJBPM(
+            KieContainer kieContainer, String sessionName, String workItemName,WorkItemHandler workItemHandler) {
+        KieSession session = getStatefulKnowledgeSessionWithCallback(kieContainer, sessionName);
+        session.getWorkItemManager().registerWorkItemHandler(workItemName,workItemHandler);
 
+        session.addEventListener(new ProcessEventListener() {
+
+            @Override
+            public void beforeVariableChanged(ProcessVariableChangedEvent arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeProcessStarted(ProcessStartedEvent arg0) {
+                System.out.println("Process Name " + arg0.getProcessInstance().getProcessName() + " has been started");
+
+
+            }
+
+            @Override
+            public void beforeProcessCompleted(ProcessCompletedEvent arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeNodeTriggered(ProcessNodeTriggeredEvent arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void beforeNodeLeft(ProcessNodeLeftEvent arg0) {
+                if (arg0.getNodeInstance() instanceof RuleSetNodeInstance) {
+                    System.out.println("Node Name " + arg0.getNodeInstance().getNodeName() + " has been left");
+                }
+
+            }
+
+            @Override
+            public void afterVariableChanged(ProcessVariableChangedEvent arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void afterProcessStarted(ProcessStartedEvent arg0) {
+
+            }
+
+            @Override
+            public void afterProcessCompleted(ProcessCompletedEvent arg0) {
+                System.out.println("Process Name " + arg0.getProcessInstance().getProcessName() + " has stopped");
+
+
+            }
+
+            @Override
+            public void afterNodeTriggered(ProcessNodeTriggeredEvent arg0) {
+                if (arg0.getNodeInstance() instanceof RuleSetNodeInstance) {
+                    System.out.println("Node Name " + arg0.getNodeInstance().getNodeName() + " has been entered");
+                }
+            }
+
+            @Override
+            public void afterNodeLeft(ProcessNodeLeftEvent arg0) {
+            }
+        });
+        return session;
+    }
 
 }

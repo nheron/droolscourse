@@ -1,9 +1,10 @@
 package droolscours;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class AccountingPeriod {
+public class AccountingPeriod implements Serializable {
     private Date startDate;
     private Date endDate;
 

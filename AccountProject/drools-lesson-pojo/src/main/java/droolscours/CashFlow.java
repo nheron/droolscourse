@@ -1,9 +1,10 @@
 package droolscours;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.util.Date;
 
-public class CashFlow {
+public class CashFlow implements Serializable {
     public static int CREDIT = 1;
     public static int DEBIT = 2;
     private Date mvtDate;

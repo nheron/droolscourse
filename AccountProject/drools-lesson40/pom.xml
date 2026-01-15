@@ -10,7 +10,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<packaging>kjar</packaging>
-	<artifactId>drools-lesson4</artifactId>
+	<artifactId>drools-lesson40</artifactId>
 
 	<dependencies>
 		<dependency>
