@@ -14,6 +14,7 @@ import util.KnowledgeSessionHelper;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 
 
@@ -40,7 +41,8 @@ public class Testlesson4 {
 
 	@Test
 	public void testRuleFlow1() {
-		File kieFile = new File("/tmp/account.bin");
+		String tmpDirsLocation = System.getProperty("java.io.tmpdir");
+		File kieFile = new File(tmpDirsLocation+"/account.bin");
         try {
             kieFile.createNewFile();
 			StopWorkItemHandler workItemHandler =new StopWorkItemHandler();
