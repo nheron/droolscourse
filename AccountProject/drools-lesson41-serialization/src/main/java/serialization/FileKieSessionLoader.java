@@ -117,7 +117,6 @@ public class FileKieSessionLoader implements KieSessionLoader {
 			 * If we were using the PseudoClock, the correct time is already set when deserializing the KieSessionConfiguration.
 			 */
 			KieSessionConfiguration kieSessionConfiguration = (KieSessionConfiguration) ois.readObject();
-			
 			Marshaller marshaller = createSerializableMarshaller(kieBase);
 			KieSession kieSession = marshaller.unmarshall(fis, kieSessionConfiguration, null);
 			return kieSession;

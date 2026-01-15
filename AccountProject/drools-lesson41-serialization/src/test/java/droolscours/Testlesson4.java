@@ -18,8 +18,10 @@ import java.nio.file.Files;
 import java.util.concurrent.TimeUnit;
 
 
+
 public class Testlesson4 {
 	static KieContainer kieContainer;
+	static long workItemId;
 	KieSession sessionStatefull = null;
 
 	@BeforeClass
@@ -40,7 +42,7 @@ public class Testlesson4 {
 	
 
 	@Test
-	public void testRuleFlow1() {
+	public void testRuleFlow_01() {
 		String tmpDirsLocation = System.getProperty("java.io.tmpdir");
 		File kieFile = new File(tmpDirsLocation+"/account.bin");
         try {
@@ -68,8 +70,46 @@ public class Testlesson4 {
             throw new RuntimeException(e);
         }
 
-        //	sessionStatefull.fireAllRules();
 	}
 
+	@Test
+	public void testRuleFlow_02() {
+		String tmpDirsLocation = System.getProperty("java.io.tmpdir");
+		File kieFile = new File(tmpDirsLocation+"/account.bin");
+		try {
+			kieFile.createNewFile();
+			StopWorkItemHandler workItemHandler =new StopWorkItemHandler();
+			FileKieSessionLoader fileKieSessionLoader = new FileKieSessionLoader(kieFile);
+			sessionStatefull = KnowledgeSessionHelper
+					.getStatefulKnowledgeSessionForJBPM(kieContainer, "lesson40-session-serialization",
+							"Human Task", workItemHandler);
+			OutputDisplay display = new OutputDisplay();
+			sessionStatefull.setGlobal("showResult", display);
+			Account a = new Account();
+			sessionStatefull.insert(a);
+			sessionStatefull.startProcess("P1_serialization");
+			System.out.println("Wait for task Validation");
+			System.out.println("Serialization");
+			TimeUnit.SECONDS.sleep(2);
+			workItemId = workItemHandler.getWorkItem().getId();
+			fileKieSessionLoader.save(sessionStatefull);
+		} catch (IOException | InterruptedException e) {
+			throw new RuntimeException(e);
+		}
+
+	}
+
+	@Test
+	public void testRuleFlow_03() {
+		String tmpDirsLocation = System.getProperty("java.io.tmpdir");
+		File kieFile = new File(tmpDirsLocation+"/account.bin");
+        FileKieSessionLoader fileKieSessionLoader = new FileKieSessionLoader(kieFile);
+        OutputDisplay display = new OutputDisplay();
+        KieSession newKieSession=fileKieSessionLoader.load();
+        System.out.println("Restore session");
+        newKieSession.setGlobal("showResult", display);
+        newKieSession.getWorkItemManager().completeWorkItem(workItemId, null);
+
+	}
 
 }
