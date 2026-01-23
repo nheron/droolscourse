@@ -51,7 +51,7 @@ public class Testlesson4 {
 			FileKieSessionLoader fileKieSessionLoader = new FileKieSessionLoader(kieFile);
 			sessionStatefull = KnowledgeSessionHelper
 					.getStatefulKnowledgeSessionForJBPM(kieContainer, "lesson40-session-serialization",
-							"Human Task", workItemHandler);
+							"StopWorkTask", workItemHandler);
 			OutputDisplay display = new OutputDisplay();
 			sessionStatefull.setGlobal("showResult", display);
 			Account a = new Account();
