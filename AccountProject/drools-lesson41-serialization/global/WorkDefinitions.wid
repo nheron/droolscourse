@@ -1,0 +1,21 @@
+[
+    
+  [
+    "name" : "ServiceTask",
+    "parameters" : [
+      "messageUUID" : new StringDataType(),
+      "serviceClassNameVariable" : new StringDataType()
+    ],
+    "results" : [
+        "Result" : new StringDataType(),
+    ],
+    "displayName" : "ServiceTask",
+    ,
+    "mavenDependencies" : [
+             "com.almady:asynchrone-technical-task-management:1.0-1-SNAPSHOT"
+
+            ],
+    "icon" : "defaultservicenodeicon.gif",
+    "category" : "Almady tasks"
+  ]
+]
