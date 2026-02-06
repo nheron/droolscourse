@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns="http://jboss.org/kie/6.0.0/kmodule">
+
+
+    <kbase name="lesson4" packages="lesson4">
+        <ksession name="lesson40-session-serialization">
+            <workItemHandlers>
+                <workItemHandler type="lesson41.StopWorkItemHandler" name="HumanTask"/>
+            </workItemHandlers>
+        </ksession>
+
+    </kbase>
+</kmodule>

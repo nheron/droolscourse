@@ -20,6 +20,7 @@
     <module>drools-lesson35</module>
     <module>drools-lesson40</module>
     <module>drools-lesson41-serialization</module>
+    <module>drools-lesson41-serialization-redis</module>
     <module>drools-lesson-pojo</module>
   </modules>
   <build>
