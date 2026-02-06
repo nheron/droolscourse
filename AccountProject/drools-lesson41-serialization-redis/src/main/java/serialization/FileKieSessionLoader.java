@@ -99,12 +99,7 @@ public class FileKieSessionLoader implements KieSessionLoader {
 		}
 
 	}
-	public KieSession load(byte[] bytes) throws IOException {
-		String stringBytes = new String(bytes);
 
-		InputStream inputStream = IOUtils.toInputStream(stringBytes, Charset.defaultCharset());
-		ObjectInputStream ois = new ObjectInputStream(inputStream);
-	}
 	private KieSession load(File file) {
 		try {
 			LOGGER.info("Loading KieSession from file: " + file.getCanonicalPath());
@@ -165,17 +160,7 @@ public class FileKieSessionLoader implements KieSessionLoader {
 		}
 	}
 
-	private KieSession createKieSession(){
-		KieBase kieBase = (KieBase) ois.readObject();
-		/*
-		 * The KieSessionConfiguration contains, among other things the session clock.
-		 * If we were using the PseudoClock, the correct time is already set when deserializing the KieSessionConfiguration.
-		 */
-		KieSessionConfiguration kieSessionConfiguration = (KieSessionConfiguration) ois.readObject();
-		Marshaller marshaller = createSerializableMarshaller(kieBase);
-		KieSession kieSession = marshaller.unmarshall(fis, kieSessionConfiguration, null);
-		return kieSession;
-	}
+
 	private Marshaller createSerializableMarshaller(KieBase kBase) {
 		ObjectMarshallingStrategyAcceptor acceptor = MarshallerFactory.newClassFilterAcceptor(new String[] { "*.*" });
 		ObjectMarshallingStrategy strategy = MarshallerFactory.newSerializeMarshallingStrategy(acceptor);
