@@ -1,0 +1,29 @@
+package loyalty;
+
+import loyalty.domains.Card;
+import loyalty.domains.Provider;
+import loyalty.domains.TicketLine;
+import loyalty.domains.Product;
+import loyalty.domains.Customer;
+import loyalty.domains.Gender;
+import loyalty.domains.Price;
+import loyalty.domains.Ligneop;
+import loyalty.domains.Ticket;
+import loyalty.domains.Currency;
+import java.lang.Float;
+
+rule "op_evian"
+	ruleflow-group "group1"
+	dialect "mvel"
+	when
+		pp : Product( name == "Evian" )
+		tt : TicketLine( product == pp , ln : lineTotal, op == null , qq : quantity)
+	then
+		Ligneop oop = new Ligneop();
+		oop.setNomOP( "Evian 50%" );
+		oop.setMontantReduction( ln*0.5 );
+		insert( oop );
+		tt.setOp( oop );
+		tt.setLineTotal( (ln-oop.montantReduction) );
+		update( tt );
+end

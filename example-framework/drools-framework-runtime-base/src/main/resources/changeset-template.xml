@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<change-set xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+            xmlns="http://drools.org/drools-5.0/change-set"
+            xsi:schemaLocation="http://drools.org/drools-5.0/change-set changeset-1.0.0.xsd">
+    <add>
+        <resource
+                type="PKG"
+                source="%s"
+                basicAuthentication="enabled"
+                username="%s"
+                password="%s">
+        </resource>
+    </add>
+</change-set>

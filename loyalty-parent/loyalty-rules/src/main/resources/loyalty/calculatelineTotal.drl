@@ -1,0 +1,27 @@
+package loyalty;
+
+import loyalty.domains.Card;
+import loyalty.domains.Provider;
+import loyalty.domains.TicketLine;
+import loyalty.domains.Product;
+import loyalty.domains.Customer;
+import loyalty.domains.Gender;
+import loyalty.domains.Price;
+import loyalty.domains.Ligneop;
+import loyalty.domains.Ticket;
+import loyalty.domains.Currency;
+import java.lang.Float;
+
+rule "calculatelineTotal"
+	ruleflow-group "group0"
+	no-loop true
+	dialect "mvel"
+	when
+		mprice : Price( price != null )
+		pp : Product( price == mprice )
+		tt : TicketLine( q : quantity, product == pp )
+	then
+		tt.setLineTotal( mprice.price*new Long(q) );
+		tt.setPrice( mprice.price );
+		update( tt );
+end

@@ -16,6 +16,9 @@
         <module>cost-calculation-extention</module>
         <module>cost-calculation-run</module>
         <module>expert-system</module>
+        <module>loyalty-parent</module>
+        <module>swimming-poorl-parent</module>
+        <module>example-framework</module>
     </modules>
     <properties>
 
@@ -24,6 +27,12 @@
         <spring-version>3.0.1.RELEASE</spring-version>
         <commons-logging-version>1.1.1</commons-logging-version>
         <drools.version>7.74.1.Final</drools.version>
+        <jbpm.version>${drools.version}</jbpm.version>
+        <javax.activation.version>1.2.0</javax.activation.version>
+        <jaxb.api.version>2.3.0</jaxb.api.version>
+        <spring.boot.version>2.7.8</spring.boot.version>
+        <jackson.version>2.13.4</jackson.version>
+        <spring.version>5.3.23</spring.version>
     </properties>
 
 

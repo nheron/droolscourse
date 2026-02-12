@@ -1,0 +1,22 @@
+package org.chtijbug.drools.runtime.test
+
+import org.chtijbug.drools.runtime.test.Fibonacci;
+
+
+rule "Account group1"
+    ruleflow-group "Group1"
+	 when
+            Fibonacci(sequence==0 )
+    then
+            insert( new Fibonacci( 1 ) );
+		
+end
+rule "Account group2"
+	ruleflow-group "Group2"
+	when
+        Fibonacci(sequence==1 )
+    then
+        insert( new Fibonacci( 2 ) );
+		
+end
+
