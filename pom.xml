@@ -10,15 +10,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>AccountProject</module>
-        <module>cost-calculation</module>
-        <module>cost-calculation-base</module>
-        <module>cost-calculation-extention</module>
-        <module>cost-calculation-run</module>
-        <module>expert-system</module>
-        <module>loyalty-parent</module>
-        <module>swimming-poorl-parent</module>
+        <module>drools-lessons</module>
         <module>example-framework</module>
+        <module>examples</module>
     </modules>
     <properties>
 
